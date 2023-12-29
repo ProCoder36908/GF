@@ -430,17 +430,26 @@
             'slither'
         ];
 
-        const gameListElement = document.getElementById('gameList');
+            const gameListElement = document.getElementById('gameList');
         
         gameList.forEach(game => {
             const listItem = document.createElement('li');
             listItem.textContent = game;
             listItem.addEventListener('click', () => {
-                navigator.clipboard.writeText(game);
-                alert(`${game} copied to clipboard!`);
+                copyToClipboard(game);
             });
             gameListElement.appendChild(listItem);
         });
+
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert(`${text} copied to clipboard!`);
+        }
     </script>
 
 </body>
