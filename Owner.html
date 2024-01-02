@@ -6,25 +6,30 @@
 </head>
 <body>
 
-<p>The owner is Umar.</p>
-
 <script>
   var password = prompt("Please enter the password to access this page:");
 
   if (password !== null && password === "8R3AD") {
-    // Password correct, do something like navigate to the authorized content
-    // For example, redirect to another page:
-    window.location.href = "authorized_page.html";
+    // Password correct, show authorized content
+    document.body.innerHTML = `
+      <h1>The owner is Umar</h1>
+      <p>Welcome to the Online page.</p>
+      <!-- Add your authorized content here -->
+    `;
   } else if (password !== null) {
     // Password incorrect
     alert("Incorrect password. Access denied.");
-    // Redirect to another page or do something else
-    window.location.href = "unauthorized_page.html";
+    // Optionally, reset the page or show a different message
+    document.body.innerHTML = `
+      <p>Welcome to the Online page. Please enter the correct password to proceed.</p>
+    `;
   } else {
     // User clicked cancel
     alert("Access canceled.");
-    // Redirect to another page or do something else
-    window.location.href = "canceled_page.html";
+    // Optionally, reset the page or show a different message
+    document.body.innerHTML = `
+      <p>Welcome to the Online page. Please enter the correct password to proceed.</p>
+    `;
   }
 </script>
 
