@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Online</title>
+</head>
+<body>
+
+<p>The owner is Umar.</p>
+
+<script>
+  var password = prompt("Please enter the password to access this page:");
+
+  if (password !== null && password === "8R3AD") {
+    // Password correct, do something like navigate to the authorized content
+    // For example, redirect to another page:
+    window.location.href = "authorized_page.html";
+  } else if (password !== null) {
+    // Password incorrect
+    alert("Incorrect password. Access denied.");
+    // Redirect to another page or do something else
+    window.location.href = "unauthorized_page.html";
+  } else {
+    // User clicked cancel
+    alert("Access canceled.");
+    // Redirect to another page or do something else
+    window.location.href = "canceled_page.html";
+  }
+</script>
+
+</body>
+</html>
