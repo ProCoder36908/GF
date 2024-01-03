@@ -453,24 +453,27 @@
         //     alert(`${text} copied to clipboard!`);
         
         // }
-        const gameListElement = document.getElementById('gameList');
-        
-        gameList.forEach(game => {
-            const listItem = document.createElement('li');
-            listItem.textContent = game;
-            listItem.addEventListener('click', () => {
-                const url = `/${game}`;
-                window.location.href = url;
-            });
-            gameListElement.appendChild(listItem);
+    const gameListElement = document.getElementById('gameList');
+
+    gameList.forEach(game => {
+        const listItem = document.createElement('li');
+        listItem.textContent = game;
+        listItem.addEventListener('click', () => {
+            const url = `/${game}`;
+            window.location.href = url;
         });
-        document.addEventListener('contextmenu', function (e) {
-      e.preventDefault();
+        gameListElement.appendChild(listItem);
     });
-         document.addEventListener('touchstart', function (e) {
-      if (e.touches.length >= 2) {
+
+    document.addEventListener('contextmenu', function (e) {
         e.preventDefault();
-      }
+    });
+
+    document.addEventListener('touchstart', function (e) {
+        if (e.touches.length >= 2) {
+            e.preventDefault();
+        }
+    });
     </script>
 
 </body>
