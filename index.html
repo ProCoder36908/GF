@@ -10,6 +10,7 @@
 <body>
     <h1>Nexus-Game-Vault</h1>
     <h2>Game List</h2>
+     <input type="text" id="searchInput" placeholder="Search games...">
      <a href='https://www.free-counters.org/'>free Counters on Free-Counters.org</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=9c24946ea161629ec0be9be2cde9e39ff77a6409'></script>
 <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1122304/t/0"></script>
     <ul id="gameList">
@@ -434,28 +435,9 @@
             'roblox.html'
         ];
 
-        //     const gameListElement = document.getElementById('gameList');
-        
-        // gameList.forEach(game => {
-        //     const listItem = document.createElement('li');
-        //     listItem.textContent = game;
-        //     listItem.addEventListener('click', () => {
-        //         copyToClipboard(game);
-        //     });
-        //     gameListElement.appendChild(listItem);
-        // });
 
-        // function copyToClipboard(text) {
-        //     const textarea = document.createElement('textarea');
-        //     textarea.value = text;
-        //     document.body.appendChild(textarea);
-        //     textarea.select();
-        //     document.execCommand('copy');
-        //     document.body.removeChild(textarea);
-        //     alert(`${text} copied to clipboard!`);
-        
-        // }
  const gameListElement = document.getElementById('gameList');
+         const searchInput = document.getElementById('searchInput');
 
     gameList.forEach(game => {
         const listItem = document.createElement('li');
