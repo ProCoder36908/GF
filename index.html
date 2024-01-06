@@ -444,29 +444,32 @@
 const gameListElement = document.getElementById('gameList');
 const searchInput = document.getElementById('searchInput');
 
-// Create a filtered list based on the search input
-function updateList(searchTerm) {
-    const filteredGames = gameList.filter(game => game.toLowerCase().includes(searchTerm.toLowerCase()));
-
+// Function to update the list based on the search input
+function updateList() {
+    const searchTerm = searchInput.value.toLowerCase();
+    
     // Clear the existing list
     gameListElement.innerHTML = '';
 
-    // Add the filtered games to the list
-    filteredGames.forEach(game => {
-        const listItem = document.createElement('li');
-        listItem.textContent = game;
-        listItem.addEventListener('click', () => {
-            const url = `/${game}`;
-            window.location.href = url;
-        });
-        gameListElement.appendChild(listItem);
+    // Filter and display the games
+    gameList.forEach(game => {
+        if (game.toLowerCase().includes(searchTerm)) {
+            const listItem = document.createElement('li');
+            listItem.textContent = game;
+            listItem.addEventListener('click', () => {
+                const url = `/${game}`;
+                window.location.href = url;
+            });
+            gameListElement.appendChild(listItem);
+        }
     });
 }
 
+// Display the entire game list initially
+updateList();
+
 // Event listener for input changes
-searchInput.addEventListener('input', function () {
-    updateList(this.value);
-});
+searchInput.addEventListener('input', updateList);
 
 document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
