@@ -440,11 +440,22 @@
             'roblox.html'
         ];
 
+const gameList = [
+    // ... (your game list remains unchanged)
+];
 
- const gameListElement = document.getElementById('gameList');
-         const searchInput = document.getElementById('searchInput');
+const gameListElement = document.getElementById('gameList');
+const searchInput = document.getElementById('searchInput');
 
-    gameList.forEach(game => {
+// Create a filtered list based on the search input
+function updateList(searchTerm) {
+    const filteredGames = gameList.filter(game => game.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    // Clear the existing list
+    gameListElement.innerHTML = '';
+
+    // Add the filtered games to the list
+    filteredGames.forEach(game => {
         const listItem = document.createElement('li');
         listItem.textContent = game;
         listItem.addEventListener('click', () => {
@@ -453,16 +464,23 @@
         });
         gameListElement.appendChild(listItem);
     });
+}
 
-    document.addEventListener('contextmenu', function (e) {
+// Event listener for input changes
+searchInput.addEventListener('input', function () {
+    updateList(this.value);
+});
+
+document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+});
+
+document.addEventListener('touchstart', function (e) {
+    if (e.touches.length >= 2) {
         e.preventDefault();
-    });
+    }
+});
 
-    document.addEventListener('touchstart', function (e) {
-        if (e.touches.length >= 2) {
-            e.preventDefault();
-        }
-    });
     </script>
 
 </body>
