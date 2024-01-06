@@ -10,40 +10,106 @@
     <div class="settings-container">
         <h2>Customize Your Settings</h2>
 
+        <!-- Palladium Settings -->
         <label for="panicLinkInput">Panic Mode Link:</label>
         <input type="text" id="panicLinkInput" placeholder="Enter Panic Mode Link">
 
         <label for="panicShortcutInput">Panic Mode Shortcut:</label>
         <input type="text" id="panicShortcutInput" placeholder="Enter Shortcut (e.g., Ctrl+Alt+P)">
+        
+        <!-- Nexus Settings -->
+        <label for="titleInput">Change Website Title:</label>
+        <input type="text" id="titleInput" placeholder="Enter new title">
+
+        <label for="faviconInput">Change Favicon URL:</label>
+        <input type="text" id="faviconInput" placeholder="Enter new favicon URL">
 
         <button class="nice-button" onclick="applySettings()">Apply Settings</button>
     </div>
 
+    <button class="open-site-button">Open about:blank</button>
+
     <script>
         // Function to apply and save settings
         function applySettings() {
+            // Palladium Settings
             const panicLink = document.getElementById("panicLinkInput").value;
             const panicShortcut = document.getElementById("panicShortcutInput").value;
 
-            // Save settings to localStorage
+            // Save Palladium settings to localStorage
             localStorage.setItem("panicLink", panicLink);
             localStorage.setItem("panicShortcut", panicShortcut);
+
+            // Nexus Settings
+            const newTitle = document.getElementById("titleInput").value;
+            const newFavicon = document.getElementById("faviconInput").value;
+
+            // Change website title
+            document.title = newTitle || "Palladium HQ";
+
+            // Change favicon
+            const favicon = document.querySelector("link[rel='icon']");
+            if (newFavicon) {
+                favicon.href = newFavicon;
+            }
+
+            // Save Nexus settings to localStorage
+            localStorage.setItem("customTitle", newTitle);
+            localStorage.setItem("customFavicon", newFavicon);
 
             alert("Settings applied successfully!");
         }
 
+        // Function to open about:blank
+        function openAboutBlank() {
+            var url = document.URL;
+            var urlObj = new window.URL(window.location.href);
+            var win = window.open();
+            win.document.body.style.margin = "0";
+            win.document.body.style.height = "100vh";
+            var iframe = win.document.createElement("iframe");
+            iframe.style.border = "none";
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.margin = "0";
+            iframe.referrerpolicy = "no-referrer";
+            iframe.allow = "fullscreen";
+            iframe.src = "about:blank";
+            win.document.body.appendChild(iframe);
+            window.location.href = "https://google.com";
+        }
+
+        document.querySelector('.open-site-button').addEventListener('click', openAboutBlank);
+
         // Function to load saved settings when the page loads
         document.addEventListener("DOMContentLoaded", function() {
+            // Palladium Settings
             const savedPanicLink = localStorage.getItem("panicLink");
             const savedPanicShortcut = localStorage.getItem("panicShortcut");
 
-            // Apply saved settings if available
+            // Apply Palladium saved settings if available
             if (savedPanicLink) {
                 document.getElementById("panicLinkInput").value = savedPanicLink;
             }
 
             if (savedPanicShortcut) {
                 document.getElementById("panicShortcutInput").value = savedPanicShortcut;
+            }
+
+            // Nexus Settings
+            const savedTitle = localStorage.getItem("customTitle");
+            const savedFavicon = localStorage.getItem("customFavicon");
+
+            // Apply Nexus saved settings if available
+            if (savedTitle) {
+                document.title = savedTitle;
+                document.getElementById("titleInput").value = savedTitle;
+            }
+
+            if (savedFavicon) {
+                const favicon = document.querySelector("link[rel='icon']");
+                favicon.href = savedFavicon;
+                document.getElementById("faviconInput").value = savedFavicon;
             }
         });
 
@@ -63,49 +129,6 @@
                         window.location.href = savedPanicLink;
                     }
                 }
-            }
-        });
-
-        // Previous code related to game list, search input, and context menu prevention
-        const gameListElement = document.getElementById('gameList');
-        const searchInput = document.getElementById('searchInput');
-
-        // Function to update the list based on the search input
-        function updateList() {
-            const searchTerm = searchInput.value.toLowerCase();
-
-            // Clear the existing list
-            gameListElement.innerHTML = '';
-
-            // Filter and display the games
-            gameList.forEach(game => {
-                if (game.toLowerCase().includes(searchTerm)) {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = game;
-                    listItem.addEventListener('click', () => {
-                        const url = `/${game}`;
-                        window.location.href = url;
-                    });
-                    gameListElement.appendChild(listItem);
-                }
-            });
-        }
-
-        // Display the entire game list initially
-        updateList();
-
-        // Event listener for input changes
-        searchInput.addEventListener('input', updateList);
-
-        // Prevent context menu
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-        });
-
-        // Prevent touchstart with more than 1 touch
-        document.addEventListener('touchstart', function (e) {
-            if (e.touches.length >= 2) {
-                e.preventDefault();
             }
         });
     </script>
