@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="settings-container">
+        <h2>Customize Your Settings</h2>
+
+        <label for="panicLinkInput">Panic Mode Link:</label>
+        <input type="text" id="panicLinkInput" placeholder="Enter Panic Mode Link">
+
+        <label for="panicShortcutInput">Panic Mode Shortcut:</label>
+        <input type="text" id="panicShortcutInput" placeholder="Enter Shortcut (e.g., Ctrl+Alt+P)">
+
+        <button class="nice-button" onclick="applySettings()">Apply Settings</button>
+    </div>
+
+    <script>
+        // Function to apply and save settings
+        function applySettings() {
+            const panicLink = document.getElementById("panicLinkInput").value;
+            const panicShortcut = document.getElementById("panicShortcutInput").value;
+
+            // Save settings to localStorage
+            localStorage.setItem("panicLink", panicLink);
+            localStorage.setItem("panicShortcut", panicShortcut);
+
+            alert("Settings applied successfully!");
+        }
+
+        // Function to load saved settings when the page loads
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedPanicLink = localStorage.getItem("panicLink");
+            const savedPanicShortcut = localStorage.getItem("panicShortcut");
+
+            // Apply saved settings if available
+            if (savedPanicLink) {
+                document.getElementById("panicLinkInput").value = savedPanicLink;
+            }
+
+            if (savedPanicShortcut) {
+                document.getElementById("panicShortcutInput").value = savedPanicShortcut;
+            }
+        });
+
+        // Function to trigger panic mode on shortcut press
+        document.addEventListener("keydown", function(event) {
+            const savedPanicShortcut = localStorage.getItem("panicShortcut");
+
+            if (savedPanicShortcut) {
+                const keys = savedPanicShortcut.split("+");
+                const modifiers = keys.slice(0, keys.length - 1).map(modifier => modifier.toLowerCase());
+                const key = keys[keys.length - 1].toLowerCase();
+
+                if (event.key.toLowerCase() === key && modifiers.every(modifier => event[`${modifier}Key`])) {
+                    const savedPanicLink = localStorage.getItem("panicLink");
+
+                    if (savedPanicLink) {
+                        window.location.href = savedPanicLink;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
 
