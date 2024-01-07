@@ -2,17 +2,17 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: black; /* Set the background color to black */
+    color: blue; /* Set the default text color to blue */
 }
 
 nav {
     text-align: center;
-    background-color: black;
     padding: 10px;
 }
 
 nav h1 {
     font-size: 24px;
-    color: blue; /* Set the text color to blue */
 }
 
 #gameList li {
@@ -23,7 +23,6 @@ nav h1 {
 nav a {
     display: inline-block;
     text-decoration: none;
-    color: blue;
     padding: 10px 20px;
     margin: 0 10px;
     border: 2px solid blue;
@@ -32,6 +31,6 @@ nav a {
 }
 
 nav a:hover {
-    color: black;
-    background-color: blue;
+    color: blue;
+    background-color: black; /* Set the background color to black on hover */
 }
