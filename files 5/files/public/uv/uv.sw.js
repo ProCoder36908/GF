@@ -1,6 +1,7 @@
 "use strict";
-importScripts('/files 5/files/public/uv/uv.bundle.js'); 
+importScripts('/files 5/files/public/uv/uv.bundle.js');
 importScripts('/files 5/files/public/uv/uv.config.js');
+
 
 class UVServiceWorker extends EventEmitter {
   constructor(config = __uv$config) {
