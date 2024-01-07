@@ -117,14 +117,14 @@
             event.preventDefault();
             try {
                 await window.navigator.serviceWorker.register('/files%205/files/public/sw.js', {
-                    scope: '/service/' // Update the scope if needed
+                    scope: '/files%205/files/public/' // Corrected scope
                 });
                 let url = input.value.trim();
 
                 if (!isUrl(url)) url = 'https://www.google.com/search?q=' + url;
                 else if (!(url.startsWith('https://') || url.startsWith('http://'))) url = 'http://' + url;
 
-                window.location.href = '/service/' + encodeURI(url);
+                window.location.href = '/files%205/files/public/' + encodeURI(url);
             } catch (error) {
                 console.error('Error registering service worker:', error);
             }
