@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="module">
+  import 'https://unpkg.com/bare-server-node/index.js';
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/path/to/your/favicon.ico"> <!-- Replace with the actual path -->
@@ -51,10 +55,12 @@
     </style>
 </head>
 <body>
-    <script src="/files%205/files/public/uv/uv.bundle.js" defer></script>
-    <script src="/files%205/files/public/uv/uv.config.js" defer></script>
-    <script src="/files%205/files/public/sw.js" defer></script>
-    <script src="/files%205/files/search.js" defer></script>
+<script src="/files%205/files/public/uv/uv.bundle.js" defer crossorigin="anonymous"></script>
+<script src="/files%205/files/public/uv/uv.config.js" defer crossorigin="anonymous"></script>
+<script src="/files%205/files/public/sw.js" defer crossorigin="anonymous"></script>
+<script src="/files%205/files/search.js" defer crossorigin="anonymous"></script>
+
+
 
     <div class='title'>
         <h1 id='title1'>Nexus Game Vault</h1>
