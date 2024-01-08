@@ -2,17 +2,19 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: black;
-    color: blue;
+    background-color: blue; /* Set the background color to blue */
+    color: black; /* Set the default text color to black */
 }
 
 nav {
     text-align: center;
     padding: 10px;
+    background-color: black; /* Set the navigation bar background color to black */
 }
 
 nav h1 {
     font-size: 24px;
+    color: cyan; /* Set the text color to cyan */
 }
 
 #gameList {
@@ -33,7 +35,7 @@ nav h1 {
 #gameList li a {
     display: inline-block;
     text-decoration: none;
-    color: white;
+    color: black; /* Set the text color to black */
     background-color: cyan;
     padding: 10px 20px;
     border: 2px solid cyan;
