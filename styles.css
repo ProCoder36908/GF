@@ -52,8 +52,8 @@ nav a:hover {
     color: blue; /* Set the text color for the game buttons to blue */
     background-color: black; /* Set the background color for the game buttons to black */
     padding: 10px 20px;
-    border: 1px solid blue; /* Set a thin blue border */
-    border-radius: 5px;
+    border: 2px solid red; /* Set a red border */
+    border-radius: 10px; /* Set rounded edges */
     transition: transform 0.2s ease-in-out;
 }
 
