@@ -52,10 +52,11 @@ nav a:hover {
     color: blue; /* Set the text color for the game buttons to blue */
     background-color: black; /* Set the background color for the game buttons to black */
     padding: 10px 20px;
-    border: 2px solid red; /* Set a red border */
+    border: 2px solid red !important; /* Set a red border with !important */
     border-radius: 10px; /* Set rounded edges */
     transition: transform 0.2s ease-in-out;
 }
+
 
 #gameList li a:hover {
     transform: scale(1.05); /* Zoom in slightly on hover */
