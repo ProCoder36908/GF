@@ -8,7 +8,13 @@
     <title>Lessons</title>
 </head>
 <body>
-        <nav>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p>This is your popup message.</p>
+            <button onclick="closePopup()">Close</button>
+        </div>
+    </div>    
+    <nav>
         <a href="/">Games</a>
         <a href="/apps.html">Apps</a>
         <a href="/settings.html">Settings</a>
@@ -481,6 +487,44 @@ document.addEventListener('touchstart', function (e) {
         e.preventDefault();
     }
 });
+        document.addEventListener("DOMContentLoaded", function() {
+    if (!getCookie("popupShown")) {
+        showPopup();
+    }
+});
+
+function showPopup() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "block";
+    setCookie("popupShown", true, 7); // Set the cookie to expire in 7 days
+}
+
+function closePopup() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "none";
+}
+
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
 
     </script>
 
