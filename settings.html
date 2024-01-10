@@ -125,6 +125,17 @@
                 }
             }
         });
+         var tabDisguiseEnabled = localStorage.getItem("tabDisguise") === "true";
+        if (tabDisguiseEnabled) {
+            setCloak("Google", "https://www.google.com/favicon.ico");
+        }
+
+        // Function to change favicon and title
+        function setCloak(name, iconURL) {
+            console.log(`Setting cloak for ${name} with icon URL: ${iconURL}`);
+            document.getElementById("dynamic-favicon").href = iconURL;
+            document.title = "Google - Search the web";
+        }
     </script>
 </body>
 </html>
