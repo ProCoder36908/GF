@@ -524,7 +524,10 @@ function getCookie(name) {
     }
     return null;
 }
-
+function toggleTabDisguise() {
+            var currentState = localStorage.getItem("tabDisguise") === "true";
+            localStorage.setItem("tabDisguise", !currentState);
+        }
 
 
     </script>
