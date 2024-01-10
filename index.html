@@ -524,51 +524,7 @@ function getCookie(name) {
     }
     return null;
 }
-addEventListener("visibilitychange", function() {
-    if (localStorage.getItem("tabDisguise") === "true") {
-        var originalFavicon = "";
-        var alternateFavicon = "https://www.google.com/favicon.ico";
-        var backup_icon;
 
-        if (document.visibilityState === "hidden") {
-            setCloak("Google", alternateFavicon);
-        } else {
-            if (!backup_icon) {
-                var icon = document.createElement("link");
-                icon.rel = "icon";
-
-                var link = document.querySelector("link[rel~='icon']");
-                if (link) {
-                    backup_icon = link;
-                    while (document.querySelector("link[rel~='icon']")) {
-                        document.querySelector("link[rel~='icon']").remove();
-                    }
-                }
-                var link = document.querySelector("link[rel~='shortcut icon']");
-                if (link) {
-                    backup_icon = link;
-                    while (document.querySelector("link[rel~='shortcut icon']")) {
-                        document.querySelector("link[rel~='shortcut icon']").remove();
-                    }
-                }
-                document.head.appendChild(icon);
-                icon.href = originalFavicon;
-            } else {
-                document.head.appendChild(backup_icon);
-            }
-            document.title = "Your Page";
-        }
-    }
-});
-
-// Assuming setCloak is a function that you've defined elsewhere in your code
-function setCloak(name, iconURL) {
-    // Implement the behavior of setCloak function as needed
-    // This is just a placeholder
-    console.log(`Setting cloak for ${name} with icon URL: ${iconURL}`);
-    document.getElementById("dynamic-favicon").href = iconURL;
-    document.title = "Google - Search the web";
-}
 
 
     </script>
