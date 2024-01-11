@@ -29,13 +29,11 @@
     <button class="open-site-button" onclick="openAboutBlank()">Open about:blank</button>
 
     <script>
-        // Function to apply and save settings
         function applySettings() {
             // Palladium Settings
             const panicLink = document.getElementById("panicLinkInput").value;
             const panicShortcut = document.getElementById("panicShortcutInput").value;
 
-            // Save Palladium settings to localStorage
             localStorage.setItem("panicLink", panicLink);
             localStorage.setItem("panicShortcut", panicShortcut);
 
@@ -43,23 +41,19 @@
             const newTitle = document.getElementById("titleInput").value;
             const newFavicon = document.getElementById("faviconInput").value;
 
-            // Change website title
             document.title = newTitle || "Palladium HQ";
 
-            // Change favicon
             const favicon = document.querySelector("link[rel='icon']");
             if (newFavicon) {
                 favicon.href = newFavicon;
             }
 
-            // Save Nexus settings to localStorage
             localStorage.setItem("customTitle", newTitle);
             localStorage.setItem("customFavicon", newFavicon);
 
             alert("Settings applied successfully!");
         }
 
-        // Function to open about:blank with iframe loading index.html
         function openAboutBlank() {
             var win = window.open();
             win.document.body.style.margin = "0";
@@ -69,19 +63,17 @@
             iframe.style.width = "100%";
             iframe.style.height = "100%";
             iframe.style.margin = "0";
-            iframe.referrerpolicy = "no-referrer";
+            iframe.referrerPolicy = "no-referrer";
             iframe.allow = "fullscreen";
             iframe.src = "index.html";
             win.document.body.appendChild(iframe);
         }
 
-        // Function to load saved settings when the page loads
         document.addEventListener("DOMContentLoaded", function() {
             // Palladium Settings
             const savedPanicLink = localStorage.getItem("panicLink");
             const savedPanicShortcut = localStorage.getItem("panicShortcut");
 
-            // Apply Palladium saved settings if available
             if (savedPanicLink) {
                 document.getElementById("panicLinkInput").value = savedPanicLink;
             }
@@ -94,7 +86,6 @@
             const savedTitle = localStorage.getItem("customTitle");
             const savedFavicon = localStorage.getItem("customFavicon");
 
-            // Apply Nexus saved settings if available
             if (savedTitle) {
                 document.title = savedTitle;
                 document.getElementById("titleInput").value = savedTitle;
@@ -107,7 +98,6 @@
             }
         });
 
-        // Function to trigger panic mode on shortcut press
         document.addEventListener("keydown", function(event) {
             const savedPanicShortcut = localStorage.getItem("panicShortcut");
 
@@ -125,12 +115,12 @@
                 }
             }
         });
-         var tabDisguiseEnabled = localStorage.getItem("tabDisguise") === "true";
+
+        var tabDisguiseEnabled = localStorage.getItem("tabDisguise") === "true";
         if (tabDisguiseEnabled) {
             setCloak("Google", "https://www.google.com/favicon.ico");
         }
 
-        // Function to change favicon and title
         function setCloak(name, iconURL) {
             console.log(`Setting cloak for ${name} with icon URL: ${iconURL}`);
             document.getElementById("dynamic-favicon").href = iconURL;
