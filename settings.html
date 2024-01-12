@@ -41,14 +41,6 @@
             // Your existing openAboutBlank function remains unchanged
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            // Your existing DOMContentLoaded event listener remains unchanged
-        });
-
-        document.addEventListener("keydown", function(event) {
-            // Your existing keydown event listener remains unchanged
-        });
-
         function toggleGlobalTabDisguise() {
             var globalTabDisguiseCheckbox = document.getElementById("globalTabDisguiseCheckbox");
             var globalTabDisguiseEnabled = globalTabDisguiseCheckbox.checked;
@@ -57,7 +49,7 @@
             localStorage.setItem("globalTabDisguiseEnabled", globalTabDisguiseEnabled);
 
             if (globalTabDisguiseEnabled) {
-                // Set the initial global tab disguise when the checkbox is checked
+                // Apply global tab disguise
                 applyGlobalTabDisguise();
             }
         }
@@ -79,6 +71,11 @@
             document.getElementById("dynamic-favicon").href = iconURL;
             document.title = `${name} - Search the web`;
         }
+
+        // Apply global tab disguise on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            applyGlobalTabDisguise();
+        });
 
         // Apply global tab disguise on visibility change
         document.addEventListener("visibilitychange", function() {
