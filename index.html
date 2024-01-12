@@ -529,9 +529,10 @@ function toggleTabDisguise() {
             localStorage.setItem("tabDisguise", !currentState);
         }
 
-  if (window.location.href.indexOf("view-source:") !== -1) {
-    window.location.href = "error.html"; // Redirect to an error page
-  }
+ if (window.location.href.indexOf("view-source:") !== -1) {
+        // Redirect to an error page
+        window.location.href = "error.html";
+    }
     </script>
 
 </body>
